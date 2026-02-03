@@ -21,22 +21,22 @@ Mis archivos de configuración para Hyprland y aplicaciones relacionadas.
 
 ```bash
 # Clonar el repositorio
-git clone git@github.com:pabloreina97/dotfiles-hypr.git ~/dotfiles-hypr
+git clone git@github.com:pabloreina97/dotfiles-hypr.git ~/dev/lab/dotfiles-hypr
 
 # Entrar al directorio
-cd ~/dotfiles-hypr
+cd ~/dev/lab/dotfiles-hypr
 
-# Crear symlinks con stow
-stow hypr waybar rofi kitty
+# Crear symlinks con stow (-t ~ indica que el target es el home)
+stow -t ~ hypr waybar rofi kitty
 ```
 
 Para instalar solo algunos componentes:
 
 ```bash
-stow hypr      # Solo Hyprland
-stow waybar    # Solo Waybar
-stow rofi      # Solo Rofi
-stow kitty     # Solo Kitty
+stow -t ~ hypr      # Solo Hyprland
+stow -t ~ waybar    # Solo Waybar
+stow -t ~ rofi      # Solo Rofi
+stow -t ~ kitty     # Solo Kitty
 ```
 
 ## Estructura
@@ -68,6 +68,6 @@ dotfiles-hypr/
 Para eliminar los symlinks:
 
 ```bash
-cd ~/dotfiles-hypr
-stow -D hypr waybar rofi kitty
+cd ~/dev/lab/dotfiles-hypr
+stow -t ~ -D hypr waybar rofi kitty
 ```
