@@ -1,0 +1,254 @@
+/* JetBrains IDE-inspired Waybar theme */
+/* Flat, dark, minimal — functional colors only */
+
+@import '../../.config/waybar/wallust/colors-waybar.css';
+
+@define-color bg         #2B2D30;
+@define-color bg-module  #393B40;
+@define-color bg-hover   #4E5157;
+@define-color border     #43454A;
+@define-color text       #BCBEC4;
+@define-color text-dim   #6F737A;
+@define-color accent     #3574F0;
+@define-color green      #57A64A;
+@define-color yellow     #C77D25;
+@define-color red        #DB5C5C;
+@define-color white      #FFFFFF;
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: 500;
+    min-height: 0;
+    font-size: 13px;
+    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+    padding: 0;
+    margin: 0;
+}
+
+window#waybar {
+    background: @bg;
+    border-bottom: 1px solid @border;
+    border-radius: 0;
+}
+
+window#waybar.hidden {
+    opacity: 0.3;
+}
+
+tooltip {
+    color: @text;
+    background: @bg;
+    border: 1px solid @border;
+    border-radius: 4px;
+}
+
+tooltip label {
+    color: @text;
+    padding: 2px 4px;
+}
+
+/*--- Module groups ---*/
+.modules-left,
+.modules-center,
+.modules-right {
+    padding: 0 4px;
+}
+
+/*--- Base module style ---*/
+#cpu,
+#memory,
+#disk,
+#temperature,
+#battery,
+#network,
+#bluetooth,
+#pulseaudio,
+#wireplumber,
+#backlight,
+#clock,
+#tray,
+#idle_inhibitor,
+#mpris,
+#keyboard-state,
+#custom-weather,
+#custom-nightlight,
+#custom-power,
+#custom-swaync,
+#custom-dot_update,
+#custom-hypridle,
+#custom-lock,
+#custom-keyboard,
+#custom-menu,
+#custom-light_dark,
+#custom-file_manager,
+#custom-tty,
+#custom-browser,
+#custom-settings,
+#custom-updater,
+#custom-hint,
+#custom-playerctl,
+#custom-cava_mviz,
+#custom-separator,
+#custom-cycle_wall,
+#custom-hyprpicker,
+#custom-reboot,
+#custom-quit,
+#power-profiles-daemon,
+#hyprland-window {
+    color: @text;
+    background: transparent;
+    padding: 2px 8px;
+    border-radius: 0;
+    border: none;
+}
+
+/*--- Workspace buttons ---*/
+#taskbar button,
+#workspaces button {
+    color: @text-dim;
+    background: transparent;
+    padding: 2px 6px;
+    margin: 2px 1px;
+    border-radius: 3px;
+    border: none;
+    box-shadow: none;
+    text-shadow: none;
+    transition: all 0.15s ease;
+}
+
+#taskbar button.active,
+#workspaces button.active {
+    color: @white;
+    background: @accent;
+    border-radius: 3px;
+    padding: 2px 8px;
+}
+
+#workspaces button.urgent {
+    color: @white;
+    background: @red;
+}
+
+#taskbar button:hover,
+#workspaces button:hover {
+    color: @white;
+    background: @bg-hover;
+}
+
+/*--- Functional colors ---*/
+#temperature {
+    color: @text;
+}
+
+#temperature.critical {
+    color: @red;
+}
+
+#cpu {
+    color: @text;
+}
+
+#memory {
+    color: @text;
+}
+
+#disk {
+    color: @text;
+}
+
+#network {
+    color: @green;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+#bluetooth {
+    color: @accent;
+}
+
+#bluetooth.disabled {
+    color: @text-dim;
+}
+
+#pulseaudio {
+    color: @text;
+}
+
+#pulseaudio.muted {
+    color: @text-dim;
+}
+
+#pulseaudio.microphone {
+    color: @text;
+}
+
+#clock {
+    color: @white;
+    font-weight: 600;
+}
+
+#idle_inhibitor {
+    color: @text-dim;
+}
+
+#idle_inhibitor.activated {
+    color: @yellow;
+}
+
+#custom-nightlight {
+    color: @text-dim;
+}
+
+#custom-power {
+    color: @text-dim;
+    padding-right: 10px;
+}
+
+#custom-power:hover {
+    color: @red;
+}
+
+#custom-weather {
+    color: @text;
+}
+
+#custom-swaync {
+    color: @text;
+}
+
+#mpris {
+    color: @accent;
+}
+
+#tray {
+    padding: 2px 4px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+/*--- Subtle separators between module groups ---*/
+.modules-left {
+    border-right: 1px solid @border;
+    margin-right: 4px;
+    padding-right: 8px;
+}
+
+.modules-right {
+    border-left: 1px solid @border;
+    margin-left: 4px;
+    padding-left: 8px;
+}
+
+/*--- Group drawers ---*/
+#custom-separator {
+    color: @border;
+    padding: 0 2px;
+}
