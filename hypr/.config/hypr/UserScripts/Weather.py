@@ -70,7 +70,7 @@ ENV_PLACE = os.getenv("WEATHER_PLACE")
 # Manual place name set inside this file. If set (non-empty), this takes top priority for display
 # and, if coordinates are not provided, will be used to geocode latitude/longitude.
 # Example: MANUAL_PLACE = "Concord, NH, US"
-MANUAL_PLACE: Optional[str] = "" #Set your city HERE
+MANUAL_PLACE: Optional[str] = "Córdoba, España"
 
 # Location icon in tooltip (default to a standard emoji to avoid missing glyphs)
 LOC_ICON = os.getenv("WEATHER_LOC_ICON", "📍")
@@ -105,34 +105,34 @@ WEATHER_ICONS = {
 }
 
 WMO_STATUS = {
-    0: "Clear sky",
-    1: "Mainly clear",
-    2: "Partly cloudy",
-    3: "Overcast",
-    45: "Fog",
-    48: "Depositing rime fog",
-    51: "Light drizzle",
-    53: "Moderate drizzle",
-    55: "Dense drizzle",
-    56: "Freezing drizzle",
-    57: "Freezing drizzle",
-    61: "Light rain",
-    63: "Moderate rain",
-    65: "Heavy rain",
-    66: "Freezing rain",
-    67: "Freezing rain",
-    71: "Slight snow",
-    73: "Moderate snow",
-    75: "Heavy snow",
-    77: "Snow grains",
-    80: "Rain showers",
-    81: "Rain showers",
-    82: "Violent rain showers",
-    85: "Snow showers",
-    86: "Heavy snow showers",
-    95: "Thunderstorm",
-    96: "Thunderstorm w/ hail",
-    99: "Thunderstorm w/ hail",
+    0: "Despejado",
+    1: "Mayormente despejado",
+    2: "Parcialmente nublado",
+    3: "Cubierto",
+    45: "Niebla",
+    48: "Niebla con escarcha",
+    51: "Llovizna ligera",
+    53: "Llovizna moderada",
+    55: "Llovizna intensa",
+    56: "Llovizna helada",
+    57: "Llovizna helada",
+    61: "Lluvia ligera",
+    63: "Lluvia moderada",
+    65: "Lluvia intensa",
+    66: "Lluvia helada",
+    67: "Lluvia helada",
+    71: "Nevada ligera",
+    73: "Nevada moderada",
+    75: "Nevada intensa",
+    77: "Granizo fino",
+    80: "Chubascos",
+    81: "Chubascos",
+    82: "Chubascos intensos",
+    85: "Chubascos de nieve",
+    86: "Chubascos de nieve intensos",
+    95: "Tormenta",
+    96: "Tormenta con granizo",
+    99: "Tormenta con granizo",
 }
 
 
@@ -642,7 +642,7 @@ def build_weather_strings(cur: JSONDict, cur_units: JSONDict, daily: JSONDict, d
 
     feels_val = coerce_float(cur.get("apparent_temperature"))
     feels_unit = cast(str, cur_units.get("apparent_temperature", ""))
-    feels_str = f"Feels like {int(round(feels_val))}{feels_unit}" if feels_val is not None else ""
+    feels_str = f"Sensación {int(round(feels_val))}{feels_unit}" if feels_val is not None else ""
 
     is_day_val = cur.get("is_day")
     is_day_int = coerce_int(is_day_val)
@@ -686,13 +686,30 @@ def build_weather_details(cur: JSONDict, cur_units: JSONDict) -> Tuple[str, str,
     return wind_text, humidity_text, visibility_text
 
 
+def aqi_label(val: int) -> str:
+    if val <= 20:
+        return "Bueno"
+    if val <= 40:
+        return "Aceptable"
+    if val <= 60:
+        return "Moderado"
+    if val <= 80:
+        return "Pobre"
+    if val <= 100:
+        return "Malo"
+    return "Muy malo"
+
+
 def build_aqi_info(aqi: Optional[Dict[str, Any]]) -> str:
     aqi_dict = ensure_dict(aqi)
     aqi_val_raw = safe_get(aqi_dict, "current", "european_aqi")
     aqi_val = coerce_float(aqi_val_raw)
     if aqi_val is None:
         log_debug(f"Unexpected type for european_aqi: {type(aqi_val_raw)}")
-    return f"AQI {int(aqi_val)}" if aqi_val is not None else "AQI N/A"
+    if aqi_val is not None:
+        v = int(aqi_val)
+        return f"ICA {aqi_label(v)} ({v})"
+    return "ICA N/A"
 
 
 def build_place_str(lat: float, lon: float, place: Optional[str]) -> str:
@@ -811,7 +828,7 @@ def build_output(loc: Location, forecast: Optional[Dict[str, Any]], aqi: Optiona
 
     simple_weather = (
         f"{place_str}\n"
-        f"{data.icon}  {data.status}\n"
+        f"{data.icon}   {data.status}\n"
         + f"  {data.temp_str} ({data.feels_str})\n"
         + (f" {data.wind_text} \n" if data.wind_text else "")
         + (f" {data.humidity_text} \n" if data.humidity_text else "")
