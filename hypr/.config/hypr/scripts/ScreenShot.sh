@@ -142,7 +142,10 @@ shotswappy() {
 
 shotsatty() {
 	tmpfile=$(mktemp /tmp/screenshot-XXXX.png)
-	grim -g "$(slurp)" "$tmpfile" && satty -f "$tmpfile"
+	grim -g "$(slurp)" "$tmpfile" && "$HOME/.cargo/bin/satty" -f "$tmpfile" \
+		--copy-command wl-copy \
+		--output-filename "$dir/$file" \
+		--early-exit
 	rm -f "$tmpfile"
 }
 
