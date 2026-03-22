@@ -12,5 +12,5 @@ configuration {
 
 /*****-- Elements Font Size -----*****/
 element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 13";
+  font: "Sora SemiBold 13";
 }

@@ -37,6 +37,7 @@
 "modules-right": [
 	"custom/weather",
 	"tray",
+	"network",
 	"bluetooth",
 	"group/audio",
 	"custom/nightlight",
