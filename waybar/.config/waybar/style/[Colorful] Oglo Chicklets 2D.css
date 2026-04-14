@@ -117,12 +117,12 @@ button.active {
     margin: 0 4px;
 }
 
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+.modules-left > widget:first-child > * {
+    margin-left: 4px;
 }
 
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
+.modules-right > widget:last-child > * {
+    margin-right: 4px;
 }
 
 #window {
@@ -144,6 +144,7 @@ button.active {
     background-color: #ee606a;
     color: #2d353b;
     padding-left: 10px;
+    padding-right: 10px;
 }
 
 #custom-power_vertical{
@@ -203,6 +204,7 @@ label:focus {
     background-color: #64b6ac;
     color: #2d353b;
     padding-left: 10px;
+    padding-right: 10px;
 }
 
 #network {
