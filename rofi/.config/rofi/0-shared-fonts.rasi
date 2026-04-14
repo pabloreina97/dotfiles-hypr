@@ -6,11 +6,11 @@
 
 /*****-- Fonts Size and Font Size -----*****/
 configuration {
-  font: "JetBrainsMono Nerd Font SemiBold 15";
+  font: "Ubuntu Sans 15";
 }
 
 
 /*****-- Elements Font Size -----*****/
 element-text {
-  font: "Sora SemiBold 13";
+  font: "Ubuntu Sans 13";
 }

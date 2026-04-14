@@ -1,0 +1,148 @@
+/* Spotlight — clean launcher theme */
+
+configuration {
+    modi:                       "drun,run,filebrowser";
+    show-icons:                 true;
+    display-drun:               "Buscar apps...";
+    display-run:                "Buscar en terminal...";
+    display-filebrowser:        "Buscar archivos...";
+    display-window:             "Buscar ventanas...";
+    drun-display-format:        "{name}";
+    hover-select:               true;
+    me-select-entry:            "MouseSecondary";
+    me-accept-entry:            "MousePrimary";
+}
+
+@theme "~/.config/rofi/wallust/colors-rofi.rasi"
+
+* {
+    selected:                    @color12;
+    text-color:                  @foreground;
+}
+
+/* ---- Window ---- */
+window {
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       580px;
+    border:                      0px;
+    border-radius:               8px;
+    background-color:            @background;
+    cursor:                      "default";
+}
+
+/* ---- Layout ---- */
+mainbox {
+    spacing:                     0px;
+    padding:                     16px;
+    background-color:            transparent;
+    children:                    [ "inputbar", "listview" ];
+}
+
+/* ---- Search bar ---- */
+inputbar {
+    spacing:                     8px;
+    padding:                     14px 16px;
+    margin:                      0px 0px 8px 0px;
+    border:                      0px;
+    border-radius:               12px;
+    background-color:            rgba(255,255,255,0.08);
+    text-color:                  @foreground;
+    children:                    [ "textbox-prompt-colon", "prompt", "entry" ];
+}
+
+textbox-prompt-colon {
+    expand:                      false;
+    str:                         " ";
+    padding:                     0px 4px 0px 0px;
+    background-color:            transparent;
+    text-color:                  @color7;
+}
+
+prompt {
+    enabled:                     true;
+    background-color:            transparent;
+    text-color:                  @color8;
+}
+
+entry {
+    enabled:                     true;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      text;
+    placeholder:                 "";
+}
+
+/* ---- Results ---- */
+listview {
+    columns:                     1;
+    lines:                       7;
+    spacing:                     4px;
+    padding:                     0px;
+    dynamic:                     true;
+    cycle:                       true;
+    scrollbar:                   false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    layout:                      vertical;
+    background-color:            transparent;
+    cursor:                      "default";
+}
+
+/* ---- Items ---- */
+element {
+    spacing:                     12px;
+    padding:                     10px 14px;
+    border:                      0px;
+    border-radius:               10px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      pointer;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+
+element selected.normal {
+    background-color:            @selected;
+    text-color:                  #ffffff;
+}
+
+element-icon {
+    size:                        28px;
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+}
+
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+/* ---- Message ---- */
+message {
+    background-color:            transparent;
+}
+textbox {
+    padding:                     12px;
+    border-radius:               10px;
+    background-color:            rgba(255,255,255,0.06);
+    text-color:                  @foreground;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+}
+error-message {
+    padding:                     12px;
+    border-radius:               10px;
+    background-color:            rgba(255,255,255,0.06);
+    text-color:                  @foreground;
+}
