@@ -132,6 +132,7 @@ shotsatty() {
 	grim -g "$(slurp)" "$tmpfile" && "$HOME/.cargo/bin/satty" -f "$tmpfile" \
 		--copy-command wl-copy \
 		--output-filename "$dir/$file" \
+		--disable-notifications \
 		--early-exit
 	rm -f "$tmpfile"
 }
